@@ -8,6 +8,6 @@ Jawaban: Karena field "Alamat" dan "No.HP" merupakan data opsional(boleh di isi 
 
 Jawaban: Browser akan menolak submit form(dan menampilkan pesan peringatan) kalau field ini dikosongkan karena field "Nama" memiliki atribut "required". 
 
-3.Form ini juga belum punya action pada tag <form>-nya — apa dampaknya saat tombol "Simpan" ditekan?
+3.Form ini juga belum punya action pada tag "form" nya, apa dampaknya saat tombol "Simpan" ditekan?
 
-Jawaban: Jika tombol "Simpan" ditekan, maka form ini belum mengirim data ke manapun(browser hanya akan reload halaman yang sama).
+Jawaban: Jika tombol "Simpan" ditekan, maka form ini belum mengirim data ke manapun karena masih belum memiliki atribut action(browser hanya akan reload halaman yang sama).
