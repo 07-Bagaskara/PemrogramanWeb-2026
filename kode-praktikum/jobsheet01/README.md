@@ -1,7 +1,7 @@
 ## Deskripsi Praktikum
 
 Jobsheet pertama ini berfokus pada penguasaan struktur dasar web menggunakan HTML5.
-
+Proyek utama yang dibangun adalah kerangka awal Sistem Informasi Perpustakaan Mini (SIMPUS-Mini).
 
 
 **6.5 Latihan Reflektif**
