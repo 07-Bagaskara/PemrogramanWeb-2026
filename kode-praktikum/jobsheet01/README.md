@@ -4,7 +4,7 @@ Jobsheet pertama ini berfokus pada penguasaan struktur dasar web menggunakan HTM
 Proyek utama yang dibangun adalah kerangka awal Sistem Informasi Perpustakaan Mini (SIMPUS-Mini).
 
 
-**6.5 Latihan Reflektif**
+## 6.5 Latihan Reflektif
 
 1.Kenapa field "Alamat" dan "No. HP" tidak diberi required, sedangkan "Nama" dan "No. Anggota" diberi?
 
