@@ -1,3 +1,9 @@
+## Deskripsi Praktikum
+
+Jobsheet pertama ini berfokus pada penguasaan struktur dasar web menggunakan HTML5.
+
+
+
 **6.5 Latihan Reflektif**
 
 1.Kenapa field "Alamat" dan "No. HP" tidak diberi required, sedangkan "Nama" dan "No. Anggota" diberi?
