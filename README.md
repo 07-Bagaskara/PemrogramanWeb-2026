@@ -1,2 +1,9 @@
-# PemrogramanWeb-2026
-Repository D&amp;P Web Sem 3
+# Biodata Mahasiswa
+
+### Informasi Akademik
+
+| Komponen | Keterangan |
+| :-- | :-- |
+| **Nama Lengkap** | [Bagaskara Pradana Yulianto] |
+| **NIM** | [254107020215]
+| **Kelas** | TI-2D |
