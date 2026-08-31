@@ -136,7 +136,7 @@ td button:last-of-type {
     background-color: #d9534f;
     color: #fff;
 }
-td button.btn-detail {
+td button:nth-of-type(2) {
     background-color: #a0cb78;
     color: #fff;
 }
