@@ -191,6 +191,10 @@ footer {
     overflow-x: auto;
 }
 
+.scroll-responsive {
+    overflow-x: auto;
+}
+
 /* ===== Hamburger Menu (checkbox hack) ===== */
 .nav-toggle {
     display: none;
@@ -206,7 +210,7 @@ footer {
 /* ===== Responsive Breakpoints ===== */
 
 /* Tablet ke bawah */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     main section:nth-of-type(2) {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -245,5 +249,12 @@ footer {
     form input,
     form select {
         max-width: 100%;
+    }
+}
+
+/*memperlebar batas area konten*/
+@media (min-width: 1400px) {
+    main {
+        max-width: 1200px;
     }
 }
