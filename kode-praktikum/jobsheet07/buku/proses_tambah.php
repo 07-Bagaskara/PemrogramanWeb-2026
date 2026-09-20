@@ -30,6 +30,18 @@ if (!empty($errors)) {
     exit;
 }
 
+$isbn = trim($_POST['isbn'] ?? '');
+if ($isbn !== '') {
+    if (!preg_match('/^[0-9-]+$/', $isbn)) {
+        $_SESSION['flash'] = [
+            'type' => 'error',
+            'pesan' => 'Gagal: ISBN hanya boleh berisi angka dan tanda hubung (-).'
+        ];
+        header("Location: tambah.php");
+        exit;
+    }
+}
+
 if (!isset($_SESSION['buku'])) {
     $_SESSION['buku'] = [];
 }
