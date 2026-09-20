@@ -29,11 +29,14 @@
                 <input type="text" id="search-input" placeholder="Ketik judul buku...">
             </div>
             <p id="loading-indicator" style="display:none;">Memuat data...</p>
+            <button type="button" id="btn-refresh" style="margin-bottom: 10px;">Muat Ulang Data</button>
+            <p id="table-counter" style="font-size: 0.9rem; color: #555; margin-bottom: 10px;">Menghitung data...</p>
             <div class="table-responsive">
             <table>
                 <thead>
                     <tr>
                         <th>Judul</th>
+                        <th>Kategori</th>
                         <th>Pengarang</th>
                         <th>Tahun</th>
                         <th>Stok</th>

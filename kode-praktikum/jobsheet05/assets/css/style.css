@@ -250,11 +250,14 @@ footer {
         width: 100%;
         order: 3;
         margin-top: 1rem;
+        /* Animasi Menu */
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
     }
 
-    .nav-toggle:checked ~ nav {
-        display: block;
-    }
+    /* Pengganti Checkbox Hack */
+    .nav-open {
+    display: block !important;
+}
 
     header nav ul {
         flex-direction: column;

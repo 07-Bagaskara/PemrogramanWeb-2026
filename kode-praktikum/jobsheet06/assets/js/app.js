@@ -1,4 +1,4 @@
-// ===== Hamburger menu (JS-driven, menggantikan checkbox hack) =====
+// ===== Hamburger menu (JS-driven) =====
 function initNavToggle() {
     const toggleBtn = document.getElementById("nav-toggle-btn");
     const nav = document.querySelector("header nav");
@@ -9,12 +9,11 @@ function initNavToggle() {
     });
 }
 
-// ===== Konfirmasi hapus (front-end only, belum ke server) =====
-// Memakai event delegation di document karena baris tabel sekarang
-// dirender dinamis via fetch (lihat buku.js/anggota.js) sehingga
-// tombol .btn-hapus belum tentu ada saat DOMContentLoaded.
+// ===== Konfirmasi hapus (Event Delegation - Khusus JB 6) =====
 function initHapusConfirm() {
     document.addEventListener("click", function (e) {
+        console.log("Elemen yang diklik:", e.target); 
+
         const btn = e.target.closest(".btn-hapus");
         if (!btn) return;
 
@@ -27,19 +26,31 @@ function initHapusConfirm() {
     });
 }
 
-// ===== Filter/pencarian tabel real-time =====
+// ===== Filter 1 Kolom & Counter (Latihan JB 5) =====
 function initTableFilter() {
     const input = document.getElementById("search-input");
     const table = document.querySelector(".table-responsive table");
+    const counter = document.getElementById("table-counter"); 
     if (!input || !table) return;
 
     input.addEventListener("keyup", function () {
         const keyword = input.value.toLowerCase();
         const rows = table.querySelectorAll("tbody tr");
+        let visibleCount = 0;
+
         rows.forEach(function (row) {
-            const teks = row.textContent.toLowerCase();
-            row.style.display = teks.includes(keyword) ? "" : "none";
+            const kolomTarget = row.querySelector("td:nth-child(1)");
+            const teks = kolomTarget ? kolomTarget.textContent.toLowerCase() : "";
+            
+            if (teks.includes(keyword)) {
+                row.style.display = "";
+                visibleCount++;
+            } else {
+                row.style.display = "none";
+            }
         });
+        
+        if (counter) counter.textContent = `Menampilkan ${visibleCount} dari ${rows.length} data`;
     });
 }
 
@@ -59,6 +70,7 @@ function hapusError(input) {
     }
 }
 
+// ===== Refaktor Array & Validasi ISBN (Latihan JB 5) =====
 function initValidasiForm() {
     const form = document.getElementById("form-tambah");
     if (!form) return;
@@ -66,20 +78,26 @@ function initValidasiForm() {
     form.addEventListener("submit", function (e) {
         let valid = true;
 
-        const judul = form.querySelector("[name='judul'], [name='nama']");
-        if (judul && judul.value.trim() === "") {
-            tampilkanError(judul, "Field ini wajib diisi.");
-            valid = false;
-        } else if (judul) {
-            hapusError(judul);
-        }
+        const fieldWajib = ['judul', 'nama', 'pengarang'];
+        fieldWajib.forEach(function(namaField) {
+            const input = form.querySelector(`[name='${namaField}']`);
+            if (input && input.value.trim() === "") {
+                tampilkanError(input, "Field ini wajib diisi.");
+                valid = false;
+            } else if (input) {
+                hapusError(input);
+            }
+        });
 
-        const pengarang = form.querySelector("[name='pengarang']");
-        if (pengarang && pengarang.value.trim() === "") {
-            tampilkanError(pengarang, "Pengarang wajib diisi.");
-            valid = false;
-        } else if (pengarang) {
-            hapusError(pengarang);
+        const isbn = form.querySelector("[name='isbn']");
+        if (isbn && isbn.value.trim() !== "") {
+            const regex = /^[0-9-]+$/; 
+            if (!regex.test(isbn.value)) {
+                tampilkanError(isbn, "ISBN hanya boleh angka dan tanda hubung (-).");
+                valid = false;
+            } else {
+                hapusError(isbn);
+            }
         }
 
         const tahun = form.querySelector("[name='tahun']");
@@ -104,9 +122,7 @@ function initValidasiForm() {
             }
         }
 
-        if (!valid) {
-            e.preventDefault();
-        }
+        if (!valid) e.preventDefault();
     });
 }
 

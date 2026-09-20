@@ -23,19 +23,33 @@ function initHapusConfirm() {
     });
 }
 
-// ===== Filter/pencarian tabel real-time =====
+// ===== Filter 1 Kolom & Counter =====
 function initTableFilter() {
     const input = document.getElementById("search-input");
     const table = document.querySelector(".table-responsive table");
+    const counter = document.getElementById("table-counter"); // Target counter
     if (!input || !table) return;
 
     input.addEventListener("keyup", function () {
         const keyword = input.value.toLowerCase();
         const rows = table.querySelectorAll("tbody tr");
+        let visibleCount = 0;
+
         rows.forEach(function (row) {
-            const teks = row.textContent.toLowerCase();
-            row.style.display = teks.includes(keyword) ? "" : "none";
+            // Hanya mencari di kolom ke-2 (Judul / Nama)
+            const kolomTarget = row.querySelector("td:nth-child(2)");
+            const teks = kolomTarget ? kolomTarget.textContent.toLowerCase() : "";
+            
+            if (teks.includes(keyword)) {
+                row.style.display = "";
+                visibleCount++;
+            } else {
+                row.style.display = "none";
+            }
         });
+        
+        // Update teks counter
+        if (counter) counter.textContent = `Menampilkan ${visibleCount} dari ${rows.length} data`;
     });
 }
 
@@ -62,20 +76,28 @@ function initValidasiForm() {
     form.addEventListener("submit", function (e) {
         let valid = true;
 
-        const judul = form.querySelector("[name='judul'], [name='nama']");
-        if (judul && judul.value.trim() === "") {
-            tampilkanError(judul, "Field ini wajib diisi.");
-            valid = false;
-        } else if (judul) {
-            hapusError(judul);
-        }
+        // 1. Refactor mengecek field wajib pakai Array & forEach
+        const fieldWajib = ['judul', 'nama', 'pengarang'];
+        fieldWajib.forEach(function(namaField) {
+            const input = form.querySelector(`[name='${namaField}']`);
+            if (input && input.value.trim() === "") {
+                tampilkanError(input, "Field ini wajib diisi.");
+                valid = false;
+            } else if (input) {
+                hapusError(input);
+            }
+        });
 
-        const pengarang = form.querySelector("[name='pengarang']");
-        if (pengarang && pengarang.value.trim() === "") {
-            tampilkanError(pengarang, "Pengarang wajib diisi.");
-            valid = false;
-        } else if (pengarang) {
-            hapusError(pengarang);
+        // 2. Validasi field baru (Regex ISBN)
+        const isbn = form.querySelector("[name='isbn']");
+        if (isbn && isbn.value.trim() !== "") {
+            const regex = /^[0-9-]+$/; // Hanya boleh angka dan tanda hubung
+            if (!regex.test(isbn.value)) {
+                tampilkanError(isbn, "ISBN hanya boleh angka dan tanda hubung (-).");
+                valid = false;
+            } else {
+                hapusError(isbn);
+            }
         }
 
         const tahun = form.querySelector("[name='tahun']");

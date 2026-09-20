@@ -9,7 +9,7 @@ async function muatDaftarBuku() {
 
     try {
         // simulasi delay jaringan agar loading indicator terlihat
-        await new Promise((resolve) => setTimeout(resolve, 600));
+        await new Promise((resolve) => setTimeout(resolve, 3000));
 
         const res = await fetch("../data/buku.json");
         if (!res.ok) {
@@ -21,6 +21,7 @@ async function muatDaftarBuku() {
             const tr = document.createElement("tr");
             tr.innerHTML =
                 "<td>" + buku.judul + "</td>" +
+                "<td>" + buku.kategori + "</td>" +
                 "<td>" + buku.pengarang + "</td>" +
                 "<td>" + buku.tahun + "</td>" +
                 "<td>" + buku.stok + "</td>" +
@@ -38,4 +39,12 @@ async function muatDaftarBuku() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", muatDaftarBuku);
+document.addEventListener("DOMContentLoaded", function () {
+    muatDaftarBuku();
+    
+    // Fitur Muat Ulang
+    const btnRefresh = document.getElementById("btn-refresh");
+    if (btnRefresh) {
+        btnRefresh.addEventListener("click", muatDaftarBuku);
+    }
+});
