@@ -1,36 +1,48 @@
 <?php
-session_start();
-
-// Prefix relatif ke root proyek ini (bukan root domain) — supaya
-// /assets, /index.php, dst tetap benar walau proyek diakses lewat
-// subfolder (mis. dp2026.test/kode-praktikum/jobsheet-08/), bukan cuma
-// lewat vhost yang document root-nya langsung folder ini.
-$__jobsheetRoot = dirname(__DIR__);
-$__scriptDir = dirname($_SERVER['SCRIPT_FILENAME']);
-$__rel = ltrim(str_replace('\\', '/', substr($__scriptDir, strlen($__jobsheetRoot))), '/');
-$base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
+$base = '/PemrogramanWeb-2026/kode-praktikum/jobsheet08'; 
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIMPUS-Mini<?php echo isset($page_title) ? ' | ' . $page_title : ''; ?></title>
-    <link rel="stylesheet" href="<?php echo $base; ?>assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $page_title ?? 'NatureRent'; ?> - Admin Panel</title>
+    <!-- Menggunakan font Plus Jakarta Sans yang sangat modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Memaksa browser membaca versi CSS terbaru -->
+    <link rel="stylesheet" href="<?php echo $base; ?>/assets/css/style.css?v=<?php echo time(); ?>">
 </head>
 <body>
-    <header>
-        <h1>SIMPUS-Mini</h1>
-        <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
-        <nav>
-            <ul>
-                <li><a href="<?php echo $base; ?>index.php">Beranda</a></li>
-                <li><a href="<?php echo $base; ?>buku/list.php">Daftar Buku</a></li>
-                <li><a href="<?php echo $base; ?>buku/tambah.php">Tambah Buku</a></li>
-                <li><a href="<?php echo $base; ?>anggota/list.php">Daftar Anggota</a></li>
-                <li><a href="<?php echo $base; ?>anggota/tambah.php">Tambah Anggota</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="dashboard-layout">
+        
+        <!-- SIDEBAR KIRI -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="logo-icon">🏕️</span>
+                <h2>NatureRent</h2>
+            </div>
+            <nav class="side-nav">
+                <p class="nav-label">MENU UTAMA</p>
+                <a href="<?php echo $base; ?>/index.php" class="nav-item">📊 Dashboard</a>
+                <a href="<?php echo $base; ?>/alat/list.php" class="nav-item">🎒 Inventaris Alat</a>
+                <a href="<?php echo $base; ?>/penyewa/list.php" class="nav-item">⛺ Data Member</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>SIMPUS-Mini</p>
+                <p>Jobsheet 8 Edition</p>
+            </div>
+        </aside>
 
-    <main>
+        <!-- AREA KONTEN KANAN -->
+        <div class="main-wrapper">
+            <header class="top-bar">
+                <h1 class="page-title"><?php echo $page_title ?? 'Dashboard'; ?></h1>
+                
+                <!-- Mengubah Badge Admin Menjadi Profil Sapaan Tematik -->
+                <div class="user-profile" style="display: flex; align-items: center; gap: 15px;">
+                    <span style="font-weight: 700; color: #2B3674; font-size: 0.95rem;">Halo, Ranger! 👋</span>
+                    <span class="admin-badge" style="background-color: #FFB547; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 800; font-size: 0.8rem; box-shadow: 0 4px 10px rgba(255, 181, 71, 0.3);">⛺ Basecamp</span>
+                </div>
+            </header>
+            
+            <main class="content-area">
