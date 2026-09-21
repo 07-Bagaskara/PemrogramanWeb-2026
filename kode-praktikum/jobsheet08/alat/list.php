@@ -1,44 +1,40 @@
 <?php
 session_start();
-$page_title = "Daftar Alat Kemah";
+$page_title = "Inventaris Alat Kemah";
 include __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/koneksi.php';
 
-// Menangani pencarian Server-Side (Ide Latihan 3)
-$keyword = trim($_GET['q'] ?? '');
-
-if ($keyword !== '') {
-    // Gunakan ILIKE untuk pencarian teks yang mengabaikan huruf besar/kecil (Case-Insensitive)
-    $stmt = $pdo->prepare("SELECT * FROM alat_kemah WHERE nama_alat ILIKE :keyword OR merk ILIKE :keyword ORDER BY id DESC");
-    // Tambahkan % di depan dan belakang agar mencari kata di tengah kalimat
-    $stmt->execute(['keyword' => "%$keyword%"]);
+// Fitur Pencarian dengan ILIKE (Case-Insensitive di PostgreSQL)
+$keyword = $_GET['keyword'] ?? '';
+try {
+    if (!empty($keyword)) {
+        $stmt = $pdo->prepare("SELECT * FROM alat_kemah WHERE nama_alat ILIKE :keyword OR merk ILIKE :keyword ORDER BY id DESC");
+        $stmt->execute([':keyword' => "%$keyword%"]);
+    } else {
+        $stmt = $pdo->query("SELECT * FROM alat_kemah ORDER BY id DESC");
+    }
     $alat_list = $stmt->fetchAll();
-} else {
-    // Jika tidak ada pencarian, tampilkan semua data
-    $stmt = $pdo->query("SELECT * FROM alat_kemah ORDER BY id DESC");
-    $alat_list = $stmt->fetchAll();
+} catch (PDOException $e) {
+    die("Error mengambil data: " . $e->getMessage());
 }
 ?>
 
 <section>
-    <h2>Daftar Alat Kemah</h2>
-    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <a href="tambah.php" class="btn">+ Tambah Alat</a>
+        
+        <form action="" method="GET" class="search-box">
+            <input type="text" name="keyword" placeholder="Cari alat / merk..." value="<?php echo htmlspecialchars($keyword); ?>">
+            <button type="submit">Cari</button>
+        </form>
+    </div>
+
     <?php if (isset($_SESSION['flash'])): ?>
         <div class="flash flash-<?php echo $_SESSION['flash']['type']; ?>">
             <?php echo $_SESSION['flash']['pesan']; ?>
         </div>
         <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
-
-    <div style="margin-bottom: 1rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-        <a href="tambah.php"><button style="background-color: #4e8274; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">+ Tambah Alat</button></a>
-        
-        <!-- Form Pencarian Server-Side -->
-        <form action="" method="GET" class="search-box" style="display: flex; gap: 0.5rem;">
-            <input type="text" name="q" placeholder="Cari nama alat / merk..." value="<?php echo htmlspecialchars($keyword); ?>" style="padding: 0.4rem; border: 1px solid #ccc; border-radius: 4px;">
-            <button type="submit" style="background-color: #55677a; color: white; padding: 0.4rem 1rem; border: none; border-radius: 4px; cursor: pointer;">Cari</button>
-        </form>
-    </div>
 
     <div class="table-responsive">
         <table>
@@ -51,29 +47,24 @@ if ($keyword !== '') {
                     <th>Kode Barang</th>
                     <th>Stok</th>
                     <th>Kategori</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($alat_list)): ?>
                     <tr>
-                        <td colspan="8" style="text-align: center; padding: 2rem;">Tidak ada data alat kemah.</td>
+                        <td colspan="7" style="text-align: center; color: #A3AED0;">Belum ada data alat kemah di sistem.</td>
                     </tr>
                 <?php else: ?>
-                    <?php $i = 1; foreach ($alat_list as $alat): ?>
-                        <tr>
-                            <td><?php echo $i++; ?></td>
-                            <td><?php echo htmlspecialchars($alat['nama_alat']); ?></td>
-                            <td><?php echo htmlspecialchars($alat['merk']); ?></td>
-                            <td><?php echo $alat['tahun_beli']; ?></td>
-                            <td><?php echo htmlspecialchars($alat['kode_barang']); ?></td>
-                            <td><?php echo $alat['stok']; ?></td>
-                            <td><?php echo htmlspecialchars($alat['kategori']); ?></td>
-                            <td>
-                                <button style="background-color: #f0ad4e; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer;">Edit</button>
-                                <button style="background-color: #d9534f; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer;">Hapus</button>
-                            </td>
-                        </tr>
+                    <?php $no = 1; foreach ($alat_list as $alat): ?>
+                    <tr>
+                        <td><?php echo $no++; ?></td>
+                        <td style="font-weight: 700; color: #2B3674;"><?php echo htmlspecialchars($alat['nama_alat']); ?></td>
+                        <td><?php echo htmlspecialchars($alat['merk']); ?></td>
+                        <td><?php echo htmlspecialchars($alat['tahun_beli']); ?></td>
+                        <td><span style="background: #F4F7FE; padding: 4px 8px; border-radius: 6px; font-family: monospace;"><?php echo htmlspecialchars($alat['kode_barang'] ?: '-'); ?></span></td>
+                        <td><span class="text-orange" style="font-weight: 800;"><?php echo htmlspecialchars($alat['stok']); ?></span></td>
+                        <td><?php echo htmlspecialchars($alat['kategori']); ?></td>
+                    </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </tbody>

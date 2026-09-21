@@ -2,7 +2,15 @@
 session_start();
 $page_title = "Tambah Alat Kemah";
 include __DIR__ . '/../includes/header.php';
-?>
+<?php if (isset($_SESSION['flash'])): ?>
+    <div style="padding: 15px; margin-bottom: 20px; border-radius: 5px; 
+         background-color: <?php echo ($_SESSION['flash']['type'] === 'error') ? '#ffebee' : '#e8f5e9'; ?>; 
+         color: <?php echo ($_SESSION['flash']['type'] === 'error') ? '#c62828' : '#2e7d32'; ?>; 
+         border: 1px solid <?php echo ($_SESSION['flash']['type'] === 'error') ? '#ef9a9a' : '#a5d6a7'; ?>;">
+        <strong><?php echo $_SESSION['flash']['pesan']; ?></strong>
+    </div>
+    <?php unset($_SESSION['flash']); ?>
+<?php endif; ?>
 
 <section>
     <h2>Tambah Alat Kemah Baru</h2>

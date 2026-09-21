@@ -1,21 +1,22 @@
 <?php
-$host = '127.0.0.1';
-$port = '5432';
-$db   = 'simpus_mini';
-$user = 'postgres';
+// Host IPv4 Pooler khusus untuk region Singapore
+$host = 'aws-0-ap-southeast-1.pooler.supabase.com';
+$port = '6543'; 
+$db   = 'postgres';
 
-//password dibiarkan kosong karena aku memakai 'trust', di pg_hba.conf
-$pass = ''; 
+// Username pooler = postgres.[ID Project Anda yang baru]
+$user = 'postgres.fffavqcdyrvkkffgwnfe'; 
+
+// Password asli Anda
+$pass = 'Bagasgemuk12'; 
 
 $dsn = "pgsql:host=$host;port=$port;dbname=$db";
 
 try {
     $pdo = new PDO($dsn, $user, $pass);
-    // Set error mode ke exception agar lebih mudah melacak error
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // Set default fetch mode ke array asosiatif
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Koneksi database gagal: " . $e->getMessage());
+    die("Koneksi Supabase gagal: " . $e->getMessage());
 }
 ?>
