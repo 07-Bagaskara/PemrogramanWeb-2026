@@ -30,7 +30,7 @@ try {
     </div>
 
     <?php if (isset($_SESSION['flash'])): ?>
-        <div class="flash flash-<?php echo $_SESSION['flash']['type']; ?>" style="padding: 12px; margin-bottom: 15px; border-radius: 6px; background-color: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7;">
+        <div class="flash flash-<?php echo $_SESSION['flash']['type']; ?>" style="padding: 12px; margin-bottom: 15px; border-radius: 6px; background-color: <?php echo ($_SESSION['flash']['type'] === 'error') ? '#ffebee' : '#e8f5e9'; ?>; color: <?php echo ($_SESSION['flash']['type'] === 'error') ? '#c62828' : '#2e7d32'; ?>; border: 1px solid <?php echo ($_SESSION['flash']['type'] === 'error') ? '#ef9a9a' : '#a5d6a7'; ?>;">
             <?php echo $_SESSION['flash']['pesan']; ?>
         </div>
         <?php unset($_SESSION['flash']); ?>
@@ -65,12 +65,17 @@ try {
                         <td style="padding: 12px 8px;"><span style="background: #F4F7FE; padding: 4px 8px; border-radius: 6px; font-family: monospace; color: #4A5568;"><?php echo htmlspecialchars($alat['kode_barang'] ?: '-'); ?></span></td>
                         <td style="padding: 12px 8px;"><span style="color: #DD6B20; font-weight: 800;"><?php echo htmlspecialchars($alat['stok']); ?></span></td>
                         <td style="padding: 12px 8px; color: #4A5568;"><?php echo htmlspecialchars($alat['kategori']); ?></td>
-                        <td style="padding: 12px 8px;">
-                            <!-- Tombol Edit (Warna Kuning/Orange) -->
-                            <a href="edit.php?id=<?php echo $alat['id']; ?>" style="display: inline-block; background-color: #ED8936; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600; margin-right: 4px;">Edit</a>
+                        
+                        <!-- Kolom Aksi dengan Flexbox agar tombol sejajar -->
+                        <td style="padding: 12px 8px; display: flex; gap: 6px; align-items: center;">
+                            <!-- Tombol Edit -->
+                            <a href="edit.php?id=<?php echo $alat['id']; ?>" style="display: inline-block; background-color: #ED8936; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Edit</a>
                             
-                            <!-- Tombol Hapus (Warna Merah) dengan validasi konfirmasi -->
-                            <a href="hapus.php?id=<?php echo $alat['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus alat ini?');" style="display: inline-block; background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Hapus</a>
+                            <!-- Tombol Hapus (Diubah menjadi Form POST) -->
+                            <form action="hapus.php" method="POST" style="margin: 0;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
+                                <input type="hidden" name="id" value="<?php echo $alat['id']; ?>">
+                                <button type="submit" style="background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit;">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                     <?php endforeach; ?>
