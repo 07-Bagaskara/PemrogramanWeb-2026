@@ -4,11 +4,10 @@ $page_title = "Daftar Penyewa";
 include __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/koneksi.php';
 
-// Fitur Pencarian Data Member
 $keyword = $_GET['keyword'] ?? '';
 try {
     if (!empty($keyword)) {
-        $stmt = $pdo->prepare("SELECT * FROM penyewa WHERE nama_lengkap ILIKE :keyword OR no_identitas ILIKE :keyword ORDER BY id DESC");
+        $stmt = $pdo->prepare("SELECT * FROM penyewa WHERE nama ILIKE :keyword OR no_identitas ILIKE :keyword ORDER BY id DESC");
         $stmt->execute([':keyword' => "%$keyword%"]);
     } else {
         $stmt = $pdo->query("SELECT * FROM penyewa ORDER BY id DESC");
@@ -57,7 +56,9 @@ try {
                     <?php $no = 1; foreach ($penyewa_list as $member): ?>
                     <tr style="border-bottom: 1px solid #EDF2F7;">
                         <td style="padding: 12px 8px; color: #4A5568;"><?php echo $no++; ?></td>
-                        <td style="padding: 12px 8px; font-weight: 700; color: #2B3674;"><?php echo htmlspecialchars($member['nama_lengkap']); ?></td>
+                        
+                        <td style="padding: 12px 8px; font-weight: 700; color: #2B3674;"><?php echo htmlspecialchars($member['nama'] ?? $member['nama_penyewa'] ?? '-'); ?></td>
+                        
                         <td style="padding: 12px 8px; color: #4A5568; font-family: monospace;"><?php echo htmlspecialchars($member['no_identitas']); ?></td>
                         <td style="padding: 12px 8px; color: #4A5568;"><?php echo htmlspecialchars($member['alamat']); ?></td>
                         <td style="padding: 12px 8px; color: #4A5568;"><?php echo htmlspecialchars($member['no_hp']); ?></td>
