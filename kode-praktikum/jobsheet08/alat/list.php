@@ -21,49 +21,57 @@ try {
 
 <section>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <a href="tambah.php" class="btn">+ Tambah Alat</a>
+        <a href="tambah.php" class="btn" style="background-color: #4C51BF; color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold;">+ Tambah Alat</a>
         
         <form action="" method="GET" class="search-box">
-            <input type="text" name="keyword" placeholder="Cari alat / merk..." value="<?php echo htmlspecialchars($keyword); ?>">
-            <button type="submit">Cari</button>
+            <input type="text" name="keyword" placeholder="Cari alat / merk..." value="<?php echo htmlspecialchars($keyword); ?>" style="padding: 8px; border-radius: 8px; border: 1px solid #ccc;">
+            <button type="submit" style="background-color: #4C51BF; color: white; padding: 8px 16px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer;">Cari</button>
         </form>
     </div>
 
     <?php if (isset($_SESSION['flash'])): ?>
-        <div class="flash flash-<?php echo $_SESSION['flash']['type']; ?>">
+        <div class="flash flash-<?php echo $_SESSION['flash']['type']; ?>" style="padding: 12px; margin-bottom: 15px; border-radius: 6px; background-color: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7;">
             <?php echo $_SESSION['flash']['pesan']; ?>
         </div>
         <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
 
-    <div class="table-responsive">
-        <table>
+    <div class="table-responsive" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
             <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Alat</th>
-                    <th>Merk</th>
-                    <th>Tahun</th>
-                    <th>Kode Barang</th>
-                    <th>Stok</th>
-                    <th>Kategori</th>
+                <tr style="border-bottom: 2px solid #E2E8F0; color: #A0AEC0; font-size: 0.85rem; letter-spacing: 1px;">
+                    <th style="padding: 12px 8px;">NO</th>
+                    <th style="padding: 12px 8px;">NAMA ALAT</th>
+                    <th style="padding: 12px 8px;">MERK</th>
+                    <th style="padding: 12px 8px;">TAHUN</th>
+                    <th style="padding: 12px 8px;">KODE BARANG</th>
+                    <th style="padding: 12px 8px;">STOK</th>
+                    <th style="padding: 12px 8px;">KATEGORI</th>
+                    <th style="padding: 12px 8px;">AKSI</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($alat_list)): ?>
                     <tr>
-                        <td colspan="7" style="text-align: center; color: #A3AED0;">Belum ada data alat kemah di sistem.</td>
+                        <td colspan="8" style="text-align: center; padding: 20px; color: #A3AED0;">Belum ada data alat kemah di sistem.</td>
                     </tr>
                 <?php else: ?>
                     <?php $no = 1; foreach ($alat_list as $alat): ?>
-                    <tr>
-                        <td><?php echo $no++; ?></td>
-                        <td style="font-weight: 700; color: #2B3674;"><?php echo htmlspecialchars($alat['nama_alat']); ?></td>
-                        <td><?php echo htmlspecialchars($alat['merk']); ?></td>
-                        <td><?php echo htmlspecialchars($alat['tahun_beli']); ?></td>
-                        <td><span style="background: #F4F7FE; padding: 4px 8px; border-radius: 6px; font-family: monospace;"><?php echo htmlspecialchars($alat['kode_barang'] ?: '-'); ?></span></td>
-                        <td><span class="text-orange" style="font-weight: 800;"><?php echo htmlspecialchars($alat['stok']); ?></span></td>
-                        <td><?php echo htmlspecialchars($alat['kategori']); ?></td>
+                    <tr style="border-bottom: 1px solid #EDF2F7;">
+                        <td style="padding: 12px 8px; color: #4A5568;"><?php echo $no++; ?></td>
+                        <td style="padding: 12px 8px; font-weight: 700; color: #2B3674;"><?php echo htmlspecialchars($alat['nama_alat']); ?></td>
+                        <td style="padding: 12px 8px; color: #4A5568;"><?php echo htmlspecialchars($alat['merk']); ?></td>
+                        <td style="padding: 12px 8px; color: #4A5568;"><?php echo htmlspecialchars($alat['tahun_beli']); ?></td>
+                        <td style="padding: 12px 8px;"><span style="background: #F4F7FE; padding: 4px 8px; border-radius: 6px; font-family: monospace; color: #4A5568;"><?php echo htmlspecialchars($alat['kode_barang'] ?: '-'); ?></span></td>
+                        <td style="padding: 12px 8px;"><span style="color: #DD6B20; font-weight: 800;"><?php echo htmlspecialchars($alat['stok']); ?></span></td>
+                        <td style="padding: 12px 8px; color: #4A5568;"><?php echo htmlspecialchars($alat['kategori']); ?></td>
+                        <td style="padding: 12px 8px;">
+                            <!-- Tombol Edit (Warna Kuning/Orange) -->
+                            <a href="edit.php?id=<?php echo $alat['id']; ?>" style="display: inline-block; background-color: #ED8936; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600; margin-right: 4px;">Edit</a>
+                            
+                            <!-- Tombol Hapus (Warna Merah) dengan validasi konfirmasi -->
+                            <a href="hapus.php?id=<?php echo $alat['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus alat ini?');" style="display: inline-block; background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Hapus</a>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
