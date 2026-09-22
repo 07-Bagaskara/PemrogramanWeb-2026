@@ -67,9 +67,10 @@ try {
                         <td style="padding: 12px 8px; display: flex; gap: 6px; align-items: center;">
                             <a href="edit.php?id=<?php echo $alat['id']; ?>" style="display: inline-block; background-color: #ED8936; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Edit</a>
                             
-                            <form action="proses_hapus.php" method="POST" style="margin: 0;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
-                                <input type="hidden" name="id" value="<?php echo $alat['id']; ?>">
-                                <button type="submit" style="background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit;">Hapus</button>
+                            <!-- Tombol Hapus dengan Jalur Absolut -->
+                            <form action="/alat/proses_hapus.php" method="POST" style="margin: 0;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
+                            <input type="hidden" name="id" value="<?php echo $alat['id']; ?>">
+                            <button type="submit" style="background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit;">Hapus</button>
                             </form>
                         </td>
                     </tr>
