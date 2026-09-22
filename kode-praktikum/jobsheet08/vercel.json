@@ -3,10 +3,16 @@
     {
       "src": "**/*.php",
       "use": "vercel-php@0.6.2"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
     },
     {
-      "src": "assets/**",
-      "use": "@vercel/static"
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
