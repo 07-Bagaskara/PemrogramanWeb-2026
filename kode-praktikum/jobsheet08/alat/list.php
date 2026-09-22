@@ -4,6 +4,7 @@ $page_title = "Inventaris Alat Kemah";
 include __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/koneksi.php';
 
+// Fitur Pencarian dengan ILIKE (Case-Insensitive di PostgreSQL)
 $keyword = $_GET['keyword'] ?? '';
 try {
     if (!empty($keyword)) {
@@ -64,13 +65,19 @@ try {
                         <td style="padding: 12px 8px;"><span style="background: #F4F7FE; padding: 4px 8px; border-radius: 6px; font-family: monospace; color: #4A5568;"><?php echo htmlspecialchars($alat['kode_barang'] ?: '-'); ?></span></td>
                         <td style="padding: 12px 8px;"><span style="color: #DD6B20; font-weight: 800;"><?php echo htmlspecialchars($alat['stok']); ?></span></td>
                         <td style="padding: 12px 8px; color: #4A5568;"><?php echo htmlspecialchars($alat['kategori']); ?></td>
+                        
+                        <!-- Kolom Aksi dengan Flexbox agar tombol sejajar -->
                         <td style="padding: 12px 8px; display: flex; gap: 6px; align-items: center;">
+                            <!-- Tombol Edit -->
                             <a href="edit.php?id=<?php echo $alat['id']; ?>" style="display: inline-block; background-color: #ED8936; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Edit</a>
                             
-                            <!-- Tombol Hapus dengan Jalur Absolut -->
-                            <form action="/alat/proses_hapus.php" method="POST" style="margin: 0;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
-                            <input type="hidden" name="id" value="<?php echo $alat['id']; ?>">
-                            <button type="submit" style="background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit;">Hapus</button>
+                            <!-- Tombol Hapus memanggil aksi_alat.php (Aman dari Blokir) -->
+                            <form action="aksi_alat.php" method="POST" style="margin: 0;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
+                                <!-- Input rahasia penanda aksi -->
+                                <input type="hidden" name="aksi" value="hapus"> 
+                                <input type="hidden" name="id" value="<?php echo $alat['id']; ?>">
+                                
+                                <button type="submit" style="background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit;">Hapus</button>
                             </form>
                         </td>
                     </tr>
