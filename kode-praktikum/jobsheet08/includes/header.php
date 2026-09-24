@@ -1,5 +1,6 @@
 <?php
-$base = '';
+preg_match('#^(.*?/jobsheet08)(?:/|$)#', $_SERVER['REQUEST_URI'], $m);
+$baseUrl = $m[1] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -9,7 +10,7 @@ $base = '';
     <title><?php echo $page_title ?? 'NatureRent'; ?> - Admin Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <!-- Memaksa browser membaca versi CSS terbaru -->
-    <link rel="stylesheet" href="<?php echo $base; ?>/assets/css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/style.css?v=<?= time() ?>">
 </head>
 <body>
     <div class="dashboard-layout">
@@ -22,9 +23,9 @@ $base = '';
             </div>
             <nav class="side-nav">
                 <p class="nav-label">MENU UTAMA</p>
-                <a href="<?php echo $base; ?>/index.php" class="nav-item">📊 Dashboard</a>
-                <a href="<?php echo $base; ?>/alat/list.php" class="nav-item">🎒 Inventaris Alat</a>
-                <a href="<?php echo $base; ?>/penyewa/list.php" class="nav-item">⛺ Data Member</a>
+                <a href="<?= $baseUrl ?>/index.php" class="nav-item">📊 Dashboard</a>
+                <a href="<?= $baseUrl ?>/alat/list.php" class="nav-item">🎒 Inventaris Alat</a>
+                <a href="<?= $baseUrl ?>/penyewa/list.php" class="nav-item">🏕️ Data Member</a>
             </nav>
             <div class="sidebar-footer">
                 <p>SIMPUS-Mini</p>
