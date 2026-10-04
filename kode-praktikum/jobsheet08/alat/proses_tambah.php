@@ -1,5 +1,4 @@
 <?php
-ob_start(); // JURUS AMPUH: Menahan semua error spasi agar redirect tetap jalan
 session_start();
 require __DIR__ . '/../includes/koneksi.php';
 
@@ -44,5 +43,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: list.php");
     exit;
 }
-ob_end_flush();
-?>

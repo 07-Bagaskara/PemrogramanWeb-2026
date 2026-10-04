@@ -4,7 +4,6 @@
 // Fungsi: Menerima data dari form edit.php, lalu meng-update
 // data penyewa yang sudah ada di database (operasi UPDATE).
 // =================================================================
-
 session_start();
 require __DIR__ . '/../includes/koneksi.php';
 

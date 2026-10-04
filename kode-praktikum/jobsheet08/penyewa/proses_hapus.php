@@ -4,7 +4,6 @@
 // Fungsi: Menerima id penyewa dari tombol "Hapus" di list.php,
 // lalu menghapus data penyewa tersebut dari database (DELETE).
 // =================================================================
-
 session_start();
 require __DIR__ . '/../includes/koneksi.php';
 

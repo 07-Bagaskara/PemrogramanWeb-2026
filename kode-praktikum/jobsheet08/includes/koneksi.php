@@ -19,4 +19,3 @@ try {
 } catch (PDOException $e) {
     die("Koneksi Supabase gagal: " . $e->getMessage());
 }
-?>

@@ -4,11 +4,6 @@
 // Fungsi: Menerima id alat dari tombol "Hapus" di list.php,
 // lalu menghapus data alat tersebut dari database (operasi DELETE).
 // =================================================================
-
-ob_start();
-// Sama seperti di proses_edit.php: menahan output buffer supaya
-// redirect header() tetap aman dari error "headers already sent".
-
 session_start();
 require __DIR__ . '/../includes/koneksi.php';
 
@@ -39,5 +34,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
 // Kembali ke halaman list setelah proses selesai
 header("Location: list.php");
 exit;
-
-ob_end_flush();

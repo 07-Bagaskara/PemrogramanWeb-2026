@@ -4,10 +4,6 @@
 // Fungsi: Menerima data dari form edit.php, lalu meng-update
 // data alat kemah yang sudah ada di database (operasi UPDATE).
 // =================================================================
-
-ob_start(); 
-// ob_start() menahan output buffer, agar seandainya ada karakter tak sengaja (spasi/baris kosong) ter-output sebelum header() dipanggil, proses redirect tetap berjalan tanpa error "headers already sent".
-
 session_start();
 require __DIR__ . '/../includes/koneksi.php';
 
@@ -56,5 +52,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
 // Setelah proses selesai (berhasil atau gagal), kembali ke halaman list
 header("Location: list.php");
 exit;
-
-ob_end_flush();
