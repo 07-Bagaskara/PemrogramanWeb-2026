@@ -31,8 +31,8 @@ include __DIR__ . '/../includes/header.php';
     </div>
 
     <form action="proses_edit.php" method="POST" style="max-width: 600px;">
-    <!-- Mengirim id alat yang akan diperbarui -->
-    <input type="hidden" name="id" value="<?php echo htmlspecialchars($alat['id']); ?>">
+        <!-- Mengirim id alat yang akan diperbarui -->
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($alat['id']); ?>">
         
         <h3 style="color: #2B3674; margin-bottom: 1.5rem;">Edit Data: <?php echo htmlspecialchars($alat['nama_alat']); ?></h3>
 
