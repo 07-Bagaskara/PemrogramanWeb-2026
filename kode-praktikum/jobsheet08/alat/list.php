@@ -36,7 +36,7 @@ try {
         <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
 
-    <div class="table-responsive" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <div class="table-responsive" style="padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
         <table style="width: 100%; border-collapse: collapse; text-align: left;">
             <thead>
                 <tr style="border-bottom: 2px solid #E2E8F0; color: #A0AEC0; font-size: 0.85rem; letter-spacing: 1px;">

@@ -52,7 +52,7 @@ body { background-color: #F4F7FE; color: #2B3674; overflow-x: hidden; }
 .text-orange { color: #FF7043; } /* Aksen warna pembeda */
 
 /* TABEL MODERN (MINIMALIS) */
-.table-responsive { background: #FFFFFF; border-radius: 20px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(112, 144, 176, 0.08); margin-top: 1rem; overflow-x: auto; }
+.table-responsive { background: #F8FAFC; border-radius: 20px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(112, 144, 176, 0.08); margin-top: 1rem; overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; }
 th, td { padding: 1.2rem 1rem; border-bottom: 1px solid #E2E8F0; text-align: left; }
 th { color: #A3AED0; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #E2E8F0; }
