@@ -30,10 +30,9 @@ include __DIR__ . '/../includes/header.php';
         <a href="list.php" style="background-color: #718096; color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem;">&larr; Kembali ke Inventaris</a>
     </div>
 
-    <form action="aksi_alat.php" method="POST" style="max-width: 600px;">
-        <!-- Input rahasia untuk Vercel Controller -->
-        <input type="hidden" name="aksi" value="edit">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($alat['id']); ?>">
+    <form action="proses_edit.php" method="POST" style="max-width: 600px;">
+    <!-- Mengirim id alat yang akan diperbarui -->
+    <input type="hidden" name="id" value="<?php echo htmlspecialchars($alat['id']); ?>">
         
         <h3 style="color: #2B3674; margin-bottom: 1.5rem;">Edit Data: <?php echo htmlspecialchars($alat['nama_alat']); ?></h3>
 

@@ -71,13 +71,11 @@ try {
                             <!-- Tombol Edit -->
                             <a href="edit.php?id=<?php echo $alat['id']; ?>" style="display: inline-block; background-color: #ED8936; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Edit</a>
                             
-                            <!-- Tombol Hapus memanggil aksi_alat.php (Aman dari Blokir) -->
-                            <form action="aksi_alat.php" method="POST" style="margin: 0; padding: 0; background: transparent; box-shadow: none;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
-                                <!-- Input rahasia penanda aksi -->
-                                <input type="hidden" name="aksi" value="hapus"> 
-                                <input type="hidden" name="id" value="<?php echo $alat['id']; ?>">
+                            <!-- Tombol Hapus: mengirim id alat ke proses_hapus.php untuk dihapus -->
+                            <form action="proses_hapus.php" method="POST" style="margin: 0; padding: 0; background: transparent; box-shadow: none;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
+                                    <input type="hidden" name="id" value="<?php echo $alat['id']; ?>">
                                 
-                                <button type="submit" style="background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit;">Hapus</button>
+                                    <button type="submit" style="background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit;">Hapus</button>
                             </form>
                         </td>
                     </tr>
