@@ -38,7 +38,7 @@ try {
     <div class="table-responsive" style="padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
         <table style="width: 100%; border-collapse: collapse; text-align: left;">
             <thead>
-                <tr style="border-bottom: 2px solid #E2E8F0; color: #A0AEC0; font-size: 0.85rem; letter-spacing: 1px;">
+                <tr>
                     <th style="padding: 12px 8px;">NO</th>
                     <th style="padding: 12px 8px;">NAMA LENGKAP</th>
                     <th style="padding: 12px 8px;">NO. IDENTITAS</th>
@@ -67,7 +67,7 @@ try {
                         <td style="padding: 12px 8px; display: flex; gap: 6px; align-items: center;">
                             <a href="edit.php?id=<?php echo $member['id']; ?>" style="display: inline-block; background-color: #ED8936; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Edit</a>
                             
-                            <form action="aksi_penyewa.php" method="POST" style="margin: 0;" onsubmit="return confirm('Yakin ingin menghapus data member ini?');">
+                            <form action="aksi_alat.php" method="POST" style="margin: 0; padding: 0; background: transparent; box-shadow: none;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
                                 <input type="hidden" name="aksi" value="hapus"> 
                                 <input type="hidden" name="id" value="<?php echo $member['id']; ?>">
                                 <button type="submit" style="background-color: #E53E3E; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit;">Hapus</button>

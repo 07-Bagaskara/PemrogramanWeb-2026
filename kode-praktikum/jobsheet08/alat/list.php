@@ -39,7 +39,7 @@ try {
     <div class="table-responsive" style="padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
         <table style="width: 100%; border-collapse: collapse; text-align: left;">
             <thead>
-                <tr style="border-bottom: 2px solid #E2E8F0; color: #A0AEC0; font-size: 0.85rem; letter-spacing: 1px;">
+                <tr>
                     <th style="padding: 12px 8px;">NO</th>
                     <th style="padding: 12px 8px;">NAMA ALAT</th>
                     <th style="padding: 12px 8px;">MERK</th>
@@ -72,7 +72,7 @@ try {
                             <a href="edit.php?id=<?php echo $alat['id']; ?>" style="display: inline-block; background-color: #ED8936; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Edit</a>
                             
                             <!-- Tombol Hapus memanggil aksi_alat.php (Aman dari Blokir) -->
-                            <form action="aksi_alat.php" method="POST" style="margin: 0;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
+                            <form action="aksi_alat.php" method="POST" style="margin: 0; padding: 0; background: transparent; box-shadow: none;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus alat ini?');">
                                 <!-- Input rahasia penanda aksi -->
                                 <input type="hidden" name="aksi" value="hapus"> 
                                 <input type="hidden" name="id" value="<?php echo $alat['id']; ?>">
