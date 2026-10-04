@@ -11,6 +11,8 @@ Pada Jobsheet 8, aplikasi telah dirombak total dari Sistem Perpustakaan menjadi 
 3. **Migrasi CREATE & READ ke SQL:**
    - **Create:** Mengubah logika di `alat/proses_tambah.php` dan `penyewa/proses_tambah.php` menggunakan query `INSERT ... RETURNING id`.
    - **Read:** Mengubah logika di `index.php` dan `list.php` menggunakan query `SELECT` dan fungsi penghitung agregrasi `COUNT(*)`.
+   - **Update/Edit:** Membangun form `edit.php` dan logika pembaruan data menggunakan query `UPDATE`.
+   - **Delete:** Menerapkan fitur hapus data menggunakan query `DELETE`. Seluruh aksi pemrosesan data (tambah, edit, hapus) diisolasi ke dalam file pusat kendali (`aksi_alat.php` dan `aksi_penyewa.php`) untuk mematuhi batas maksimal *Serverless Functions* di Vercel.
 4. **Keamanan Prepared Statements:**
    Semua query manipulasi data diproses menggunakan *prepared statements* (parameter bind `:nama_kolom`) untuk mencegah celah keamanan *SQL Injection*.
 
