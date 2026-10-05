@@ -13,9 +13,9 @@ if ($path && is_dir($path)) {
     $path = realpath($path . '/index.php');
 }
 
-// Hanya boleh mengakses jobsheet07 & jobsheet08
+// Hanya boleh mengakses jobsheet07, jobsheet08 & jobsheet09
 $ok = false;
-foreach (['jobsheet07', 'jobsheet08'] as $dir) {
+foreach (['jobsheet07', 'jobsheet08', 'jobsheet09'] as $dir) {
     $base = realpath("$root/$dir");
     if ($base && $path && strpos($path, $base . DIRECTORY_SEPARATOR) === 0) {
         $ok = true;
