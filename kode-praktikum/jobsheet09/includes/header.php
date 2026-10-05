@@ -33,7 +33,7 @@ $baseUrl = $m[1] ?? '';
             </nav>
             <div class="sidebar-footer">
                 <p>SIMPUS-Mini</p>
-                <p>Jobsheet 8 Edition</p>
+                <p>Jobsheet 9 Edition</p>
             </div>
         </aside>
 
