@@ -13,7 +13,7 @@
         <nav>
             <ul>
                 <li><a href="../index.html">Beranda</a></li>
-                <li><a href="list.html">Daftar Buku</a></li>
+                <li><a href="list.html" aria-current="page">Daftar Buku</a></li>
                 <li><a href="tambah.html">Tambah Buku</a></li>
                 <li><a href="../anggota/list.html">Daftar Anggota</a></li>
                 <li><a href="../anggota/tambah.html">Tambah Anggota</a></li>
@@ -26,11 +26,11 @@
             <h2>Daftar Buku</h2>
             <div class="search-box">
                 <label for="search-input">Cari Judul Buku</label>
-                <input type="text" id="search-input" placeholder="Ketik judul buku...">
+                <input type="text" id="search-input" data-kolom="1" placeholder="Ketik judul buku...">
             </div>
             <p id="loading-indicator" style="display:none;">Memuat data...</p>
-            <button type="button" id="btn-refresh" style="margin-bottom: 10px;">Muat Ulang Data</button>
-            <p id="table-counter" style="font-size: 0.9rem; color: #555; margin-bottom: 10px;">Menghitung data...</p>
+            <button type="button" id="btn-refresh">Muat Ulang Data</button>
+            <p id="table-counter">Menghitung data...</p>
             <div class="table-responsive">
             <table>
                 <thead>
@@ -43,7 +43,7 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody data-sumber="../data/buku.json" data-kunci="judul,kategori,pengarang,tahun,stok" data-delay="3000">
                     
                 </tbody>
             </table>
@@ -55,6 +55,6 @@
         <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 6</p>
     </footer>
     <script src="../assets/js/app.js"></script>
-    <script src="../assets/js/buku.js"></script>
+    <script src="../assets/js/daftar.js"></script>
 </body>
 </html>

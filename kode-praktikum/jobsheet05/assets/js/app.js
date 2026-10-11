@@ -18,38 +18,57 @@ function initHapusConfirm() {
             const yakin = confirm("Yakin ingin menghapus \"" + nama + "\"?");
             if (yakin && row) {
                 row.remove();
+                perbaruiCounter();
             }
         });
     });
 }
 
+// ===== Counter jumlah baris (Latihan JB 5) =====
+// Dipanggil setelah filter, setelah hapus, dan setelah data selesai dimuat.
+function perbaruiCounter() {
+    const counter = document.getElementById("table-counter");
+    const table = document.querySelector(".table-responsive table");
+    if (!counter || !table) return;
+
+    const rows = table.querySelectorAll("tbody tr");
+    let visibleCount = 0;
+    rows.forEach(function (row) {
+        if (row.style.display !== "none") visibleCount++;
+    });
+    counter.textContent = `Menampilkan ${visibleCount} dari ${rows.length} data`;
+}
+
+// Isi counter saat halaman dibuka, hanya kalau tabel sudah berisi baris (tabel statis JB5)
+function initCounter() {
+    if (document.querySelector(".table-responsive tbody tr")) perbaruiCounter();
+}
+
 // ===== Filter 1 Kolom & Counter =====
 function initTableFilter() {
     const input = document.getElementById("search-input");
+    // nomor kolom yang dicari dibaca dari atribut data-kolom di HTML (buku = 1, anggota = 2)
+    const nomorKolom = input ? (input.dataset.kolom || 1) : 1;
     const table = document.querySelector(".table-responsive table");
-    const counter = document.getElementById("table-counter"); // Target counter
     if (!input || !table) return;
 
     input.addEventListener("keyup", function () {
         const keyword = input.value.toLowerCase();
         const rows = table.querySelectorAll("tbody tr");
-        let visibleCount = 0;
 
         rows.forEach(function (row) {
-            // Hanya mencari di kolom ke-2 (Judul / Nama)
-            const kolomTarget = row.querySelector("td:nth-child(2)");
+            // Hanya mencari di kolom yang ditentukan data-kolom (buku = Judul, anggota = Nama)
+            const kolomTarget = row.querySelector("td:nth-child(" + nomorKolom + ")");
             const teks = kolomTarget ? kolomTarget.textContent.toLowerCase() : "";
             
             if (teks.includes(keyword)) {
                 row.style.display = "";
-                visibleCount++;
             } else {
                 row.style.display = "none";
             }
         });
         
-        // Update teks counter
-        if (counter) counter.textContent = `Menampilkan ${visibleCount} dari ${rows.length} data`;
+        perbaruiCounter();
     });
 }
 
@@ -132,5 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initNavToggle();
     initHapusConfirm();
     initTableFilter();
+    initCounter();
     initValidasiForm();
 });
