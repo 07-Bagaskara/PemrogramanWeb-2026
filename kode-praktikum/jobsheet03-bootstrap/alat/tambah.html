@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NatureRent | Tambah Alat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-semibold" href="../index.html">NatureRent</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="list.html">Daftar Alat</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="tambah.html">Tambah Alat</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../penyewa/list.html">Daftar Penyewa</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container-fluid px-4 my-4">
+        <section class="card border-0 shadow-sm mb-4">
+            <div class="card-body">
+                <h2 class="card-title text-primary mb-3">Tambah Alat</h2>
+                <div id="alert-area"></div>
+                <form data-pesan="Alat kemah berhasil disimpan.">
+                    <div class="mb-3">
+                        <label for="nama_alat" class="form-label fw-semibold">Nama Alat</label>
+                        <input type="text" class="form-control" id="nama_alat" name="nama_alat" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="merk" class="form-label fw-semibold">Merk / Brand</label>
+                        <input type="text" class="form-control" id="merk" name="merk" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tahun_beli" class="form-label fw-semibold">Tahun Beli</label>
+                        <input type="number" class="form-control" id="tahun_beli" name="tahun_beli" min="1900" max="2026" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kode_barang" class="form-label fw-semibold">Kode Barang (angka dan strip)</label>
+                        <input type="text" class="form-control" id="kode_barang" name="kode_barang">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stok" class="form-label fw-semibold">Stok</label>
+                        <input type="number" class="form-control" id="stok" name="stok" min="0" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kategori" class="form-label fw-semibold">Kategori</label>
+                        <select class="form-select" id="kategori" name="kategori">
+                            <option value="Tenda">Tenda</option>
+                            <option value="Tas Carrier">Tas Carrier</option>
+                            <option value="Alat Masak">Alat Masak</option>
+                            <option value="Penerangan">Penerangan</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-secondary py-3 small">
+        <p class="mb-0">&copy; 2026 NatureRent &mdash; Jobsheet 3 (Bootstrap)</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/form.js"></script>
+</body>
+</html>

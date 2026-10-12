@@ -47,7 +47,7 @@ function initCounter() {
 // ===== Filter 1 Kolom & Counter =====
 function initTableFilter() {
     const input = document.getElementById("search-input");
-    // nomor kolom yang dicari dibaca dari atribut data-kolom di HTML (buku = 1, anggota = 2)
+    // nomor kolom yang dicari dibaca dari atribut data-kolom di HTML (alat = 1, penyewa = 2)
     const nomorKolom = input ? (input.dataset.kolom || 1) : 1;
     const table = document.querySelector(".table-responsive table");
     if (!input || !table) return;
@@ -57,7 +57,7 @@ function initTableFilter() {
         const rows = table.querySelectorAll("tbody tr");
 
         rows.forEach(function (row) {
-            // Hanya mencari di kolom yang ditentukan data-kolom (buku = Judul, anggota = Nama)
+            // Hanya mencari di kolom yang ditentukan data-kolom (alat = Nama Alat, penyewa = Nama)
             const kolomTarget = row.querySelector("td:nth-child(" + nomorKolom + ")");
             const teks = kolomTarget ? kolomTarget.textContent.toLowerCase() : "";
             
@@ -96,7 +96,7 @@ function initValidasiForm() {
         let valid = true;
 
         // 1. Refactor mengecek field wajib pakai Array & forEach
-        const fieldWajib = ['judul', 'nama', 'pengarang'];
+        const fieldWajib = ['nama_alat', 'nama', 'merk'];
         fieldWajib.forEach(function(namaField) {
             const input = form.querySelector(`[name='${namaField}']`);
             if (input && input.value.trim() === "") {
@@ -107,23 +107,23 @@ function initValidasiForm() {
             }
         });
 
-        // 2. Validasi field baru (Regex ISBN)
-        const isbn = form.querySelector("[name='isbn']");
-        if (isbn && isbn.value.trim() !== "") {
+        // 2. Validasi field baru (Regex Kode Barang)
+        const kodeBarang = form.querySelector("[name='kode_barang']");
+        if (kodeBarang && kodeBarang.value.trim() !== "") {
             const regex = /^[0-9-]+$/; // Hanya boleh angka dan tanda hubung
-            if (!regex.test(isbn.value)) {
-                tampilkanError(isbn, "ISBN hanya boleh angka dan tanda hubung (-).");
+            if (!regex.test(kodeBarang.value)) {
+                tampilkanError(kodeBarang, "Kode Barang hanya boleh angka dan tanda hubung (-).");
                 valid = false;
             } else {
-                hapusError(isbn);
+                hapusError(kodeBarang);
             }
         }
 
-        const tahun = form.querySelector("[name='tahun']");
+        const tahun = form.querySelector("[name='tahun_beli']");
         if (tahun) {
             const nilai = parseInt(tahun.value, 10);
             if (isNaN(nilai) || nilai < 1900 || nilai > 2026) {
-                tampilkanError(tahun, "Tahun harus di antara 1900-2026.");
+                tampilkanError(tahun, "Tahun beli harus di antara 1900-2026.");
                 valid = false;
             } else {
                 hapusError(tahun);

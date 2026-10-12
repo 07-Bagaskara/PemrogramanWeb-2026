@@ -1,13 +1,13 @@
-# SIMPUS-Mini: Jobsheet 3 (Responsive Design)
+# NatureRent: Jobsheet 3 (Responsive Design)
 
 
 ## Deskripsi Praktikum
-Jobsheet ketiga ini berfokus pada implementasi *Responsive Web Design* (RWD) murni menggunakan HTML dan CSS tanpa tambahan JavaScript. Pembaruan pada proyek SIMPUS-Mini ini memastikan tata letak dan fungsionalitas antarmuka tetap optimal ketika diakses melalui berbagai ukuran layar (desktop, tablet, maupun *smartphone*).
+Jobsheet ketiga ini berfokus pada implementasi *Responsive Web Design* (RWD) murni menggunakan HTML dan CSS tanpa tambahan JavaScript. Pembaruan pada proyek NatureRent ini memastikan tata letak dan fungsionalitas antarmuka tetap optimal ketika diakses melalui berbagai ukuran layar (desktop, tablet, maupun *smartphone*).
 
 ## Fitur Responsif yang Diimplementasikan
 * **Viewport Meta Tag:** Menambahkan `<meta name="viewport" content="width=device-width, initial-scale=1">` di seluruh file HTML agar skala tampilan dikendalikan secara otomatis oleh perangkat seluler.
 * **Hamburger Menu (CSS-Only):** Membangun sistem navigasi *dropdown* khusus layar sempit menggunakan teknik *checkbox hack*, memanfaatkan kombinasi state `:checked` dan *General Sibling Combinator* (`~`).
-* **Tabel Responsif:** Menerapkan properti `overflow-x: auto` melalui kelas `.table-responsive` sebagai pembungkus tabel data buku dan anggota. Fitur ini mencegah tabel merusak lebar halaman (terpotong) dan mengizinkan pengguna melakukan *scroll* horizontal pada layar HP.
+* **Tabel Responsif:** Menerapkan properti `overflow-x: auto` melalui kelas `.table-responsive` sebagai pembungkus tabel data alat dan penyewa. Fitur ini mencegah tabel merusak lebar halaman (terpotong) dan mengizinkan pengguna melakukan *scroll* horizontal pada layar HP.
 * **CSS Media Queries:** Menetapkan titik adaptasi (*breakpoint*) pada `900px` (menyesuaikan grid menjadi 2 kolom dan sidebar menjadi bilah atas) dan `480px` (mengubah grid menjadi 1 kolom penuh serta memicu transisi menu navigasi menjadi tombol hamburger).
 
 ## Observasi & Analisis (Ide Latihan Tambahan)

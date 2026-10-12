@@ -1,33 +1,36 @@
-# SIMPUS-Mini: Jobsheet 4 (UI/UX & Wireframe Design)
+# NatureRent: Jobsheet 4 (UI/UX & Wireframe Design)
 
 ## Deskripsi Praktikum
 Jobsheet keempat ini berfokus pada tahapan perencanaan *UI/UX Design* sebelum memulai penulisan kode fungsional yang kompleks. Tahap ini bertujuan untuk merancang alur navigasi (*user flow*) serta struktur antarmuka (*wireframe*) dari fitur-fitur baru yang akan diimplementasikan pada tahap pengembangan berikutnya.
 
 ## Perubahan dari Jobsheet 3
 * Seluruh halaman HTML dan `assets/css/style.css` dari Jobsheet 3 dipakai kembali tanpa perubahan struktur.
-* **Latihan opsional (bab 6.4 dokumentasi):** wireframe halaman Login diimplementasikan sebagai HTML statis di `login.html` (tanpa logika login sungguhan). Halaman ini memakai pola `<label>` + `<input>` seperti form Tambah Buku, ditambah satu `<input type="password">` untuk field Password.
+* **Latihan opsional (bab 6.4 dokumentasi):** wireframe halaman Login diimplementasikan sebagai HTML statis di `login.html` (tanpa logika login sungguhan). Halaman ini memakai pola `<label>` + `<input>` seperti form Tambah Alat, ditambah satu `<input type="password">` untuk field Password.
 * Menu **Login** ditambahkan di navbar semua halaman Jobsheet 4 supaya halaman login mudah dibuka.
 
 ## Perancangan Wireframe (ASCII Art)
-Berikut adalah rancangan antarmuka untuk fitur **Registrasi Anggota Baru** yang ditujukan bagi aktor Tamu:
+Berikut adalah rancangan antarmuka untuk fitur **Registrasi Penyewa Baru** yang ditujukan bagi aktor Tamu:
 
 ```text
 +---------------------------------------------------+
-| SIMPUS-Mini                                 Login |
+| NatureRent                                  Login |
 +---------------------------------------------------+
 |                                                   |
-|            [ Registrasi Anggota Baru ]            |
+|            [ Registrasi Penyewa Baru ]            |
 |                                                   |
 |  Nama Lengkap:                                    |
+|  [_____________________________________________]  |
+|                                                   |
+|  No. Identitas (KTP/SIM):                         |
 |  [_____________________________________________]  |
 |                                                   |
 |  Alamat:                                          |
 |  [_____________________________________________]  |
 |                                                   |
-|  No. Telepon / HP:                                |
+|  No. HP:                                          |
 |  [_____________________________________________]  |
 |                                                   |
-|               ( DAFTAR SEKARANG )                 |
+|                ( DAFTAR SEKARANG )                |
 |                                                   |
 +---------------------------------------------------+
 ```
@@ -36,10 +39,10 @@ Berikut wireframe halaman **Login Petugas** yang diimplementasikan di `login.htm
 
 ```text
 +--------------------------------------+
-|              SIMPUS-Mini             |
-|--------------------------------------|
+|              NatureRent              |
++--------------------------------------+
 |                                      |
-|           [ Login Petugas ]          |
+|          [ Login Petugas ]           |
 |                                      |
 |   Username : [______________]        |
 |   Password : [______________]        |
@@ -51,29 +54,29 @@ Berikut wireframe halaman **Login Petugas** yang diimplementasikan di `login.htm
 ```
 
 ## Latihan Opsional: User Flow Baru
-Skenario yang belum digambarkan di dokumentasi: **Petugas mencari anggota yang tunggakannya sudah lewat jatuh tempo.**
+Skenario yang belum digambarkan di dokumentasi: **Petugas mencari penyewa yang terlambat mengembalikan alat kemah.**
 
 ```text
-[Petugas Login] -> [Dashboard] -> [Menu "Daftar Anggota"]
-        -> [Pilih filter "Tunggakan lewat jatuh tempo"]
-        -> [Sistem menampilkan anggota yang punya peminjaman belum kembali
-            dan tanggal jatuh tempo lebih kecil dari hari ini]
-        -> [Pilih anggota] -> [Lihat riwayat peminjaman anggota]
+[Petugas Login] -> [Dashboard] -> [Menu "Daftar Penyewa"]
+        -> [Pilih filter "Sewa lewat jatuh tempo"]
+        -> [Sistem menampilkan penyewa yang punya sewa belum kembali
+            dan tanggal kembali lebih kecil dari hari ini]
+        -> [Pilih penyewa] -> [Lihat riwayat sewa penyewa]
         -> [Tandai "Dikembalikan" atau catat denda]
         -> [Kembali ke Dashboard]
 ```
 
 Aturan bisnis yang dicatat:
-* Jatuh tempo = tanggal pinjam + 7 hari (asumsi).
-* Anggota tanpa tunggakan tidak muncul di hasil filter.
-* Kalau hasil filter kosong, tampilkan pesan "Tidak ada anggota yang menunggak".
+* Jatuh tempo = tanggal sewa + lama sewa (asumsi 3 hari).
+* Penyewa tanpa sewa yang terlambat tidak muncul di hasil filter.
+* Kalau hasil filter kosong, tampilkan pesan "Tidak ada penyewa yang terlambat".
 
 ## Latihan Opsional: Edge Case Tambahan
-1. **Buku yang sama dipinjamkan dua kali berturut-turut ke anggota yang sama:** sistem memeriksa transaksi yang masih aktif dan menolak dengan pesan "Buku ini sedang dipinjam anggota tersebut". Stok tidak boleh berkurang dua kali.
+1. **Alat yang sama disewa dua kali berturut-turut oleh penyewa yang sama:** sistem memeriksa transaksi sewa yang masih aktif dan menolak dengan pesan "Alat ini sedang disewa penyewa tersebut". Stok tidak boleh berkurang dua kali.
 2. **Stok tinggal 1, dua Petugas memproses hampir bersamaan:** hanya satu transaksi yang boleh berhasil, yang kedua ditolak karena stok sudah 0.
-3. **Anggota yang masih menunggak mencoba meminjam lagi:** ditolak sampai bukunya dikembalikan.
+3. **Penyewa yang masih terlambat mencoba menyewa lagi:** ditolak sampai alat yang disewa sebelumnya dikembalikan.
 4. **Tombol "Kembalikan" ditekan dua kali:** pengembalian kedua diabaikan, stok tidak bertambah dua kali.
-5. **Buku dihapus dari katalog padahal masih ada transaksi aktif:** penghapusan ditolak.
+5. **Alat dihapus dari inventaris padahal masih ada sewa aktif:** penghapusan ditolak.
 6. **Login dengan username atau password salah:** tampilkan satu pesan umum ("Username atau password salah") tanpa membocorkan mana yang salah.
 
 ## Cara menjalankan

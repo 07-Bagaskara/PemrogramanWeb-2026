@@ -1,12 +1,12 @@
 ## Deskripsi Praktikum
 
 Jobsheet pertama ini berfokus pada penguasaan struktur dasar web menggunakan HTML5.
-Proyek utama yang dibangun adalah kerangka awal Sistem Informasi Perpustakaan Mini (SIMPUS-Mini).
+Proyek utama yang dibangun adalah kerangka awal Sistem Rental Alat Kemah (NatureRent).
 
 
 ## 6.5 Latihan Reflektif
 
-1.Kenapa field "Alamat" dan "No. HP" tidak diberi required, sedangkan "Nama" dan "No. Anggota" diberi?
+1.Kenapa field "Alamat" dan "No. HP" tidak diberi required, sedangkan "Nama" dan "No. Identitas" diberi?
 
 Jawaban: Karena field "Alamat" dan "No.HP" merupakan data opsional(boleh di isi dan boleh tidak isi).
 

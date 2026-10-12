@@ -1,0 +1,12 @@
+[
+    { "nama_alat": "Tenda Dome 4 Orang", "kategori": "Tenda", "merk": "Eiger", "tahun_beli": 2022, "stok": 4 },
+    { "nama_alat": "Tenda Ultralight 2 Orang", "kategori": "Tenda", "merk": "Naturehike", "tahun_beli": 2023, "stok": 3 },
+    { "nama_alat": "Carrier 60 Liter", "kategori": "Tas Carrier", "merk": "Consina", "tahun_beli": 2021, "stok": 5 },
+    { "nama_alat": "Carrier 45 Liter", "kategori": "Tas Carrier", "merk": "Deuter", "tahun_beli": 2020, "stok": 0 },
+    { "nama_alat": "Kompor Portable", "kategori": "Alat Masak", "merk": "Trangia", "tahun_beli": 2022, "stok": 6 },
+    { "nama_alat": "Nesting Set Aluminium", "kategori": "Alat Masak", "merk": "Eiger", "tahun_beli": 2021, "stok": 8 },
+    { "nama_alat": "Headlamp LED", "kategori": "Penerangan", "merk": "Petzl", "tahun_beli": 2023, "stok": 7 },
+    { "nama_alat": "Lampu Tenda", "kategori": "Penerangan", "merk": "Naturehike", "tahun_beli": 2022, "stok": 5 },
+    { "nama_alat": "Sleeping Bag", "kategori": "Lainnya", "merk": "Consina", "tahun_beli": 2021, "stok": 2 },
+    { "nama_alat": "Matras Gulung", "kategori": "Lainnya", "merk": "Eiger", "tahun_beli": 2020, "stok": 1 }
+]
