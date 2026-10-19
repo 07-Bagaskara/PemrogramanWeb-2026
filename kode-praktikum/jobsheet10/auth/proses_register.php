@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal mendaftar: ' . $e->getMessage()];
         }
-        header("Location: register.php");
+        header("Location: registrasi.php");   // ← ganti dari register.php
         exit;
     }
 }

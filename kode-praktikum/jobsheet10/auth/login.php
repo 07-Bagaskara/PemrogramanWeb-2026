@@ -26,7 +26,7 @@ include __DIR__ . '/../includes/header.php';
         <button type="submit">Login</button>
     </form>
 
-    <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
+    <p>Belum punya akun? <a href="registrasi.php">Daftar di sini</a></p>
 </section>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>
