@@ -1,6 +1,7 @@
 <?php
 session_start();
 $page_title = "Tambah Alat Kemah";
+require __DIR__ . '/../includes/auth_guard.php';
 include __DIR__ . '/../includes/header.php';
 ?>
 
