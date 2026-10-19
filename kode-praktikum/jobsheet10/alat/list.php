@@ -1,5 +1,4 @@
 <?php
-session_start();
 $page_title = "Inventaris Alat Kemah";
 require __DIR__ . '/../includes/auth_guard.php';
 include __DIR__ . '/../includes/header.php';

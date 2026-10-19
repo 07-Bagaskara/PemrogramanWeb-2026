@@ -30,6 +30,7 @@ $baseUrl = $m[1] ?? '';
                 <a href="<?= $baseUrl ?>/index.php" class="nav-item">📊 Dashboard</a>
                 <a href="<?= $baseUrl ?>/alat/list.php" class="nav-item">🎒 Inventaris Alat</a>
                 <a href="<?= $baseUrl ?>/penyewa/list.php" class="nav-item">🏕️ Data Member</a>
+                <a href="<?= $baseUrl ?>/auth/logout.php" class="nav-item">🚪 Logout</a>
             </nav>
             <div class="sidebar-footer">
                 <p>SIMPUS-Mini</p>
@@ -42,7 +43,7 @@ $baseUrl = $m[1] ?? '';
             <header class="top-bar">
                 <h1 class="page-title"><?php echo $page_title ?? 'Dashboard'; ?></h1>
                 <div class="user-profile" style="display: flex; align-items: center; gap: 15px;">
-                    <span style="font-weight: 700; color: #2B3674; font-size: 0.95rem;">Halo, Ranger! 👋</span>
+                    <span style="font-weight: 700; color: #2B3674; font-size: 0.95rem;">Halo, <?= htmlspecialchars($_SESSION['username'] ?? 'Ranger') ?>! 👋</span>
                     <span class="admin-badge" style="background-color: #FFB547; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 800; font-size: 0.8rem; box-shadow: 0 4px 10px rgba(255, 181, 71, 0.3);">🏕️ Basecamp</span>
                 </div>
             </header>
