@@ -1,0 +1,97 @@
+/* RESET & BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+body { background-color: #F4F7FE; color: #2B3674; overflow-x: hidden; }
+
+/* LAYOUT UTAMA (GRID SIDEBAR) */
+.dashboard-layout { display: flex; min-height: 100vh; }
+
+/* SIDEBAR STYLING */
+.sidebar {
+    width: 280px; background-color: #FFFFFF;
+    border-right: 1px solid #E2E8F0;
+    display: flex; flex-direction: column;
+    position: fixed; height: 100vh; z-index: 100;
+}
+.brand { padding: 2rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #F4F7FE; }
+.brand h2 { font-size: 1.5rem; font-weight: 800; color: #2B3674; }
+.logo-icon { font-size: 1.8rem; }
+.side-nav { padding: 2rem 1.5rem; flex-grow: 1; }
+.nav-label { font-size: 0.75rem; color: #A3AED0; font-weight: 700; margin-bottom: 1rem; letter-spacing: 1px; }
+.nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 1rem; color: #A3AED0; text-decoration: none;
+    font-weight: 700; border-radius: 12px; margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+.nav-item:hover, .nav-item.active { background-color: #4318FF; color: #FFFFFF; box-shadow: 0 10px 20px rgba(67, 24, 255, 0.2); }
+.sidebar-footer { padding: 2rem; border-top: 1px solid #F4F7FE; text-align: center; color: #A3AED0; font-size: 0.8rem; font-weight: 500; }
+
+/* MAIN WRAPPER (KONTEN KANAN) */
+.main-wrapper { flex: 1; margin-left: 280px; display: flex; flex-direction: column; min-height: 100vh; }
+
+/* TOP BAR (HEADER KONTEN) */
+.top-bar {
+    background: transparent; padding: 2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.page-title { font-size: 2rem; font-weight: 800; color: #2B3674; }
+.admin-badge { background: #4318FF; color: white; padding: 0.5rem 1.2rem; border-radius: 30px; font-weight: 700; font-size: 0.85rem; }
+
+/* AREA KONTEN (MAIN) */
+.content-area { padding: 0 2.5rem 2.5rem 2.5rem; }
+
+/* KARTU STATISTIK (DASHBOARD) */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+.stat-card {
+    background: #FFFFFF; padding: 1.8rem; border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(112, 144, 176, 0.08);
+    display: flex; flex-direction: column; gap: 5px;
+}
+.stat-card h3 { color: #A3AED0; font-size: 1rem; font-weight: 500; }
+.stat-number { font-size: 2.5rem; font-weight: 800; color: #2B3674; }
+.text-orange { color: #FF7043; } /* Aksen warna pembeda */
+
+/* TABEL MODERN (MINIMALIS) */
+.table-responsive { background: #F8FAFC; border-radius: 20px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(112, 144, 176, 0.08); margin-top: 1rem; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 1.2rem 1rem; border-bottom: 1px solid #E2E8F0; text-align: left; }
+th { 
+    background-color: #2B3674; /* Latar belakang header biru gelap */
+    color: #FFFFFF; /* Warna teks putih agar kontras */
+    font-size: 0.85rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+    border: none; /* Menghilangkan garis bawah */
+}
+
+/* Tambahan agar sudut header kiri dan kanan atas ikut membulat rapi */
+th:first-child { border-top-left-radius: 12px; }
+th:last-child { border-top-right-radius: 12px; }
+td { color: #2B3674; font-weight: 500; }
+tr:hover td { background-color: #F8FAFC; }
+
+/* TOMBOL & FORM */
+button, .btn {
+    background-color: #4318FF; color: #FFF; border: none;
+    padding: 0.8rem 1.5rem; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;
+}
+button:hover { background-color: #3311DB; box-shadow: 0 5px 15px rgba(67,24,255,0.3); }
+td button { padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 8px; margin-right: 5px; }
+.btn-edit { background-color: #FFB547; color: white; }
+.btn-hapus { background-color: #EE5D50; color: white; }
+
+/* INPUT FORM */
+form { background: #FFFFFF; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(112, 144, 176, 0.08); }
+label { display: block; color: #2B3674; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.9rem; }
+input, select, textarea {
+    width: 100%; padding: 1rem; margin-bottom: 1.5rem;
+    border: 1px solid #E2E8F0; border-radius: 12px;
+    background: #F4F7FE; color: #2B3674; font-weight: 500; outline: none; transition: 0.3s;
+}
+input:focus { border-color: #4318FF; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(67, 24, 255, 0.1); }
+
+/* SEARCH BOX */
+.search-box { display: flex; gap: 10px; margin-bottom: 0; padding: 0; background: none; box-shadow: none; align-items: center; }
+.search-box input { margin-bottom: 0; padding: 0.8rem 1.2rem; border-radius: 30px; }
+.search-box button { border-radius: 30px; padding: 0.8rem 1.5rem; }
