@@ -1,5 +1,5 @@
 <?php
-// Router untuk jobsheet07 - jobsheet11 (PHP) di Vercel.
+// Router untuk jobsheet07 - jobsheet12 (PHP) di Vercel.
 // - File .php dijalankan
 // - File statis (css/js/gambar) disajikan apa adanya
 // - Folder includes/ dan sql/ tidak bisa diakses langsung dari browser
@@ -15,7 +15,7 @@ if ($path && is_dir($path)) {
 
 // Hanya boleh mengakses folder jobsheet PHP berikut
 $ok = false;
-foreach (['jobsheet07', 'jobsheet08', 'jobsheet09', 'jobsheet10', 'jobsheet11'] as $dir) {
+foreach (['jobsheet07', 'jobsheet08', 'jobsheet09', 'jobsheet10', 'jobsheet11', 'jobsheet12'] as $dir) {
     $base = realpath("$root/$dir");
     if ($base && $path && strpos($path, $base . DIRECTORY_SEPARATOR) === 0) {
         $ok = true;

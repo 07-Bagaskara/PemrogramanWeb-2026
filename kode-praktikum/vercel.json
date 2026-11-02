@@ -2,11 +2,11 @@
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.9.0",
-      "includeFiles": "{jobsheet07,jobsheet08,jobsheet09,jobsheet10,jobsheet11}/**"
+      "includeFiles": "{jobsheet07,jobsheet08,jobsheet09,jobsheet10,jobsheet11,jobsheet12}/**"
     }
   },
   "routes": [
-    { "src": "/(jobsheet(0[789]|1[01])(?:/.*)?)", "dest": "/api/index.php" },
+    { "src": "/(jobsheet(0[789]|1[0-2])(?:/.*)?)", "dest": "/api/index.php" },
     { "handle": "filesystem" }
   ]
 }
